@@ -30,18 +30,18 @@ namespace Kernel.CrossCuttingConcerns
             {
                 collection.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
                 collection.AddTransient<ClaimsValueEnricher>();
-                collection.AddSingleton<ITelemetryInitializer>(
-                    new CloudRoleNameInitializer(configuration["Logging:ApplicationInsights:RoleName"]));//, configuration["Logging:ApplicationInsights:RoleName"]));
+                //collection.AddSingleton<ITelemetryInitializer>(
+                //    new CloudRoleNameInitializer(configuration["Logging:ApplicationInsights:RoleName"]));//, configuration["Logging:ApplicationInsights:RoleName"]));
                 //new LoggingTelemetryConverter(configuration["Logging:ApplicationInsights:RoleName"], configuration["Logging:ApplicationInsights:RoleName"]));
 
                 var provider = collection.BuildServiceProvider();
                 var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
-                var cloudRoleNameInitializer = provider.GetRequiredService<ITelemetryInitializer>();
+                //var cloudRoleNameInitializer = provider.GetRequiredService<ITelemetryInitializer>();
 
                 LoggerConfiguration loggerConfiguration = new LoggerConfiguration()
                     .ReadFrom.Configuration(configuration)
                     .Enrich.FromLogContext()
-                    //.WriteTo.ApplicationInsights(TelemetryConfiguration.Active, TelemetryConverter.Traces)
+                    //.WriteTo.ApplicationInsights(, new EventTelemetryConverter())
                     .Enrich.WithClaimsValueEnricher(provider, "BusinessId", true)
                     .Enrich.WithClaimsValueEnricher(provider, "UserAccountId", true)
                     .Enrich.WithClaimsValueEnricher(provider, "Email", true);
