@@ -21,6 +21,9 @@ namespace ILoggerSandpit.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            //int e = 0;
+            //var sum = 1 / e;
+
             _logger.BeginScope("Downloading P45 documents");
 
             var itemCount = 9;

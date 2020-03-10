@@ -23,16 +23,5 @@ namespace Kernel.CrossCuttingConcerns.ClaimsValueEnrichment
 
             return enrichmentConfiguration.With(claimValueEnricher);
         }
-
-        //public static LoggerConfiguration WithClaimValue(
-        //    this LoggerEnrichmentConfiguration enrichmentConfiguration,
-        //    IHttpContextAccessor httpContextAccessor,
-        //    bool sanitizeLogOutput,
-        //    string claimProperty,
-        //    string logEventProperty = null)
-        //{
-        //    if (enrichmentConfiguration == null) throw new ArgumentNullException(nameof(enrichmentConfiguration));
-        //    return enrichmentConfiguration.With(new ClaimsValueEnricher(httpContextAccessor, claimProperty, logEventProperty, sanitizeLogOutput));
-        //}
     }
 }

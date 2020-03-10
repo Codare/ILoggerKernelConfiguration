@@ -11,17 +11,8 @@ namespace Kernel.CrossCuttingConcerns.ClaimsValueEnrichment
     public class ClaimsValueEnricher : ILogEventEnricher
     {
         string _claimProperty;
-        string _logEventProperty;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private bool _sanitizeLogOutput;
-
-        //public ClaimsValueEnricher(string claimProperty, string logEventProperty, bool sanitizeLogOutput = true)
-        //    : this(new HttpContextAccessor(), claimProperty, logEventProperty, sanitizeLogOutput)
-        //{
-        //    _claimProperty = claimProperty;
-        //    _logEventProperty = logEventProperty;
-        //    _sanitizeLogOutput = sanitizeLogOutput;
-        //}
 
         public ClaimsValueEnricher(IHttpContextAccessor httpContextAccessor)
         {
@@ -39,10 +30,10 @@ namespace Kernel.CrossCuttingConcerns.ClaimsValueEnrichment
             if (logEvent == null)
                 throw new ArgumentNullException(nameof(logEvent));
 
-            if (_httpContextAccessor?.HttpContext.Request == null)
+            if (_httpContextAccessor?.HttpContext?.Request == null)
                 return;
 
-            //var user = _httpContextAccessor.HttpContext.User;
+            var user = _httpContextAccessor.HttpContext.User;
 
             //if (user == null)// || !user.Identity.IsAuthenticated)
             //    return;
@@ -61,9 +52,6 @@ namespace Kernel.CrossCuttingConcerns.ClaimsValueEnrichment
                 claimValue = GetSanitizedLogOutput(claimValue);
 
             if (string.IsNullOrWhiteSpace(claimValue)) return;
-
-            //var claimProperty = new LogEventProperty(_logEventProperty, new ScalarValue(claimValue));
-            //logEvent.AddPropertyIfAbsent(claimProperty);
 
             logEvent.AddOrUpdateProperty(propertyFactory.CreateProperty(_claimProperty, claimValue, true));
         }

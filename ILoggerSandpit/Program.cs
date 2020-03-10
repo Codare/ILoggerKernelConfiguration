@@ -4,15 +4,35 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Serilog.Sinks.ApplicationInsights.Sinks.ApplicationInsights.TelemetryConverters;
 
 namespace ILoggerSandpit
 {
     public class Program
     {
+        private static ILogger _logger;
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            //CreateWebHostBuilder(args).Build().Run();
+            //EventTelemetryConverter
+            //TraceTelemetryConverter
+
+            var webHost = CreateWebHostBuilder(args).Build();
+
+            try
+            {
+                _logger = webHost.Services.GetRequiredService<ILogger<Program>>();
+                _logger.LogInformation("The application is about to start...");
+                
+                webHost.Run();
+            }
+            catch (Exception e)
+            {
+                _logger.LogCritical(e, "The application has crashed and the process will exit...");
+                Console.WriteLine(e);
+            }
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
@@ -21,22 +41,16 @@ namespace ILoggerSandpit
             var configuration = GetConfiguration(environment);
 
             var webHostBuilder = WebHost.CreateDefaultBuilder(args)
-                //.ConfigureLogging((context, logging) =>
-                //{
-                //    logging.ClearProviders();
-                //})
+                .CaptureStartupErrors(false)
+                .ConfigureLogging((context, logging) =>
+                {
+                    logging.ClearProviders();
+                })
                 .UseStartup<Startup>()
                 .UseCustomSerilogWebHostBuilder(
-                    (provider, context, loggerConfiguration) => { },
                     configuration, environment);
 
             return webHostBuilder;
-
-
-            //        (provider, context, loggerConfiguration) =>
-            //{
-            //    //return WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
-            //}, configuration, environment);
         }
 
         private static IConfiguration GetConfiguration(string environment)
