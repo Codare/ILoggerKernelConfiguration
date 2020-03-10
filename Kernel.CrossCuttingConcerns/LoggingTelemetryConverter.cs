@@ -6,7 +6,7 @@ using Serilog.Sinks.ApplicationInsights.Sinks.ApplicationInsights.TelemetryConve
 
 namespace Kernel.CrossCuttingConcerns
 {
-    public class LoggingTelemetryConverter : TraceTelemetryConverter//, ITelemetryConverter
+    public class LoggingTelemetryConverter : EventTelemetryConverter//, ITelemetryConverter
     {
         private string _roleName;
         private string _roleInstance;

@@ -30,8 +30,9 @@ namespace Kernel.CrossCuttingConcerns
             {
                 collection.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
                 collection.AddTransient<ClaimsValueEnricher>();
-                //collection.AddSingleton<ITelemetryInitializer>(
-                //    new CloudRoleNameInitializer(configuration["Logging:ApplicationInsights:RoleName"]));//, configuration["Logging:ApplicationInsights:RoleName"]));
+                collection.AddSingleton<ITelemetryInitializer>(
+                    new CloudRoleNameInitializer(configuration["Logging:ApplicationInsights:RoleName"]));//, configuration["Logging:ApplicationInsights:RoleName"]));
+                
                 //new LoggingTelemetryConverter(configuration["Logging:ApplicationInsights:RoleName"], configuration["Logging:ApplicationInsights:RoleName"]));
 
                 var provider = collection.BuildServiceProvider();
