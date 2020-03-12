@@ -4,33 +4,27 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Product>Kernel.CrossCuttingConcerns</Product>
-    <Description>a</Description>
+    <Description>Kernel cross cutting concerns temporary nuget package to enable testing</Description>
     <PackageId>Kernel.CrossCuttingConcerns</PackageId>
-    <PackageReleaseNotes>a</PackageReleaseNotes>
-    <Version>1.0.0.8</Version>
+    <PackageReleaseNotes>Kernel cross cutting concerns temporary nuget package to enable testing</PackageReleaseNotes>
+    <Version>1.0.0.11</Version>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <Company>Kernel.CrossCuttingConcerns</Company>
     <Authors>Kernel.CrossCuttingConcerns</Authors>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.1" />
-    <PackageReference Include="Serilog" Version="2.9.0">
-    <IncludeAssets></IncludeAssets>
-      </PackageReference>
-    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0">
-      <IncludeAssets>all</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Serilog" Version="2.9.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
     <PackageReference Include="Serilog.Extensions.Hosting" Version="3.0.0" />
-    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0">
-      <IncludeAssets>all</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1">
-      <IncludeAssets>all</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
     <PackageReference Include="Serilog.Sinks.Debug" Version="1.0.1" />
   </ItemGroup>
 

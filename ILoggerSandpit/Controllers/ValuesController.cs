@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Serilog.Context;
 
 namespace ILoggerSandpit.Controllers
 {
@@ -42,18 +41,18 @@ namespace ILoggerSandpit.Controllers
 
             _logger.LogInformation("No contextual properties");
 
-            using (LogContext.PushProperty("A", 1))
-            {
-                _logger.LogInformation("Carries property A = 1");
+            //using (LogContext.PushProperty("A", 1))
+            //{
+            //    _logger.LogInformation("Carries property A = 1");
 
-                using (LogContext.PushProperty("A", 2))
-                using (LogContext.PushProperty("B", 1))
-                {
-                    _logger.LogInformation("Carries A = 2 and B = 1");
-                }
+            //    using (LogContext.PushProperty("A", 2))
+            //    using (LogContext.PushProperty("B", 1))
+            //    {
+            //        _logger.LogInformation("Carries A = 2 and B = 1");
+            //    }
 
-                _logger.LogInformation("Carries property A = 1, again");
-            }
+            //    _logger.LogInformation("Carries property A = 1, again");
+            //}
 
             return new string[] { "value1", "value2" };
         }
