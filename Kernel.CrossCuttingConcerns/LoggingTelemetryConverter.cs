@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.ApplicationInsights.Channel;
+using Microsoft.ApplicationInsights.DataContracts;
 using Serilog.Events;
 using Serilog.Sinks.ApplicationInsights.Sinks.ApplicationInsights.TelemetryConverters;
 
 namespace Kernel.CrossCuttingConcerns
 {
-    public class LoggingTelemetryConverter : EventTelemetryConverter//, ITelemetryConverter
+    public class LoggingTelemetryConverter : TraceTelemetryConverter
     {
         private string _roleName;
         private string _roleInstance;
 
         const string OperationId = "Operation Id";
         const string ParentId = "Parent Id";
-        private const string RoleName = "Role Name";
-        private const string RoleInstance = "Role Instance";
-
 
         public LoggingTelemetryConverter(string roleName, string roleInstance)
         {
@@ -38,6 +36,14 @@ namespace Kernel.CrossCuttingConcerns
 
                 yield return telemetry;
             }
+        }
+
+        public override void ForwardPropertiesToTelemetryProperties(
+            LogEvent logEvent,
+            ISupportProperties telemetryProperties,
+            IFormatProvider formatProvider)
+        {
+            this.ForwardPropertiesToTelemetryProperties(logEvent, telemetryProperties, formatProvider, true, true, true);
         }
 
         private bool TryGetScalarProperty(LogEvent logEvent, string propertyName, out object value)

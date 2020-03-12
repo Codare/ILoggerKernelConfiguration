@@ -2,15 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Product>Kernel.CrossCuttingConcerns</Product>
+    <Description>a</Description>
+    <PackageId>Kernel.CrossCuttingConcerns</PackageId>
+    <PackageReleaseNotes>a</PackageReleaseNotes>
+    <Version>1.0.0.8</Version>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <Company>Kernel.CrossCuttingConcerns</Company>
+    <Authors>Kernel.CrossCuttingConcerns</Authors>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.1" />
     <PackageReference Include="Serilog" Version="2.9.0">
-    <IncludeAssets>all</IncludeAssets>
+    <IncludeAssets></IncludeAssets>
       </PackageReference>
-    <PackageReference Include="Serilog.AspNetCore" Version="2.1.0">
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0">
       <IncludeAssets>all</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Serilog.Extensions.Hosting" Version="3.0.0" />
@@ -29,6 +38,10 @@
     <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions">
       <HintPath>..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.hosting.abstractions\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Serilog\SerilogExtensions\" />
   </ItemGroup>
 
 </Project>

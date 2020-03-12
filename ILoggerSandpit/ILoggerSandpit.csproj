@@ -9,16 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Kernel.CrossCuttingConcerns" Version="1.0.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Kernel.CrossCuttingConcerns\Kernel.CrossCuttingConcerns.csproj">
-      <Private>true</Private>
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
 
 </Project>

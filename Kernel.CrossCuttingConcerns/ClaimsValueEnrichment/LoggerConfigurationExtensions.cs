@@ -7,7 +7,6 @@ namespace Kernel.CrossCuttingConcerns.ClaimsValueEnrichment
 {
     public static class LoggerEnrichmentConfigurationExtensions
     {
-        //WithAspnetCoreHttpContext
         public static LoggerConfiguration WithClaimsValueEnricher(
             this LoggerEnrichmentConfiguration enrichmentConfiguration,
             IServiceProvider serviceProvider,
