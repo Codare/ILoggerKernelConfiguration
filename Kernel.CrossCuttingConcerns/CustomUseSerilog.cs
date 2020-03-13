@@ -1,4 +1,5 @@
 ﻿using System;
+using Destructurama;
 using Kernel.CrossCuttingConcerns.ClaimsValueEnrichment;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Hosting;
@@ -8,8 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Serilog.AspNetCore;
 using Serilog.Core;
-using Serilog.Extensions.Logging;
 
 namespace Kernel.CrossCuttingConcerns
 {
@@ -35,18 +36,29 @@ namespace Kernel.CrossCuttingConcerns
                 var provider = collection.BuildServiceProvider();
                 var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
 
+                var redactSensitiveInformation =
+                    GetBooleanFromConfigFile(configuration["Logging:RedactSensitiveInformation"]);
+
                 LoggerConfiguration loggerConfiguration = new LoggerConfiguration()
+                    .Destructure.UsingAttributes()
                     .ReadFrom.Configuration(configuration)
                     .Enrich.FromLogContext()
-                    .Enrich.WithClaimsValueEnricher(provider, "BusinessId", true)
-                    .Enrich.WithClaimsValueEnricher(provider, "UserAccountId", true)
-                    .Enrich.WithClaimsValueEnricher(provider, "Email", true);
+                    .Enrich.WithClaimsValueEnricher(provider, "BusinessId", redactSensitiveInformation)
+                    .Enrich.WithClaimsValueEnricher(provider, "UserAccountId", redactSensitiveInformation)
+                    .Enrich.WithClaimsValueEnricher(provider, "Email", redactSensitiveInformation);
 
                 Logger logger = loggerConfiguration.CreateLogger();
-                Log.Logger = logger;
                 collection.AddSingleton(services => (ILoggerFactory)new SerilogLoggerFactory(logger, true));
             });
             return webHostBuilder;
+        }
+
+        private static bool GetBooleanFromConfigFile(string configSetting)
+        {
+            var success = bool.TryParse(configSetting, out var result);
+
+            if (!success) return true;
+            return result;
         }
     }
 }

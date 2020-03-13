@@ -14,10 +14,6 @@ namespace ILoggerSandpit
         private static ILogger _logger;
         public static void Main(string[] args)
         {
-            //CreateWebHostBuilder(args).Build().Run();
-            //EventTelemetryConverter
-            //TraceTelemetryConverter
-
             var webHost = CreateWebHostBuilder(args).Build();
 
             try

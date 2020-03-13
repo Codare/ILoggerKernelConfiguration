@@ -31,20 +31,29 @@ namespace Kernel.CrossCuttingConcerns.ClaimsValueEnrichment
                 throw new ArgumentNullException(nameof(logEvent));
 
             if (_httpContextAccessor?.HttpContext?.Request == null)
+            {
+                logEvent.AddOrUpdateProperty(propertyFactory.CreateProperty(_claimProperty, "There is no HttpContext.Request yet!", true));
                 return;
+            }
 
             var user = _httpContextAccessor.HttpContext.User;
 
-            //if (user == null)// || !user.Identity.IsAuthenticated)
-            //    return;
+            if (user == null || !user.Identity.IsAuthenticated)
+            {
+                logEvent.AddOrUpdateProperty(propertyFactory.CreateProperty(_claimProperty, "No user or user is not authenticated!", true));
+                return;
+            }
 
-            //var claims = ((ClaimsIdentity)user.Identity).Claims;
+            var claims = ((ClaimsIdentity)user.Identity).Claims;
 
-            var claims = new List<Claim>();
+            if(!claims.Any())
+                logEvent.AddOrUpdateProperty(propertyFactory.CreateProperty(_claimProperty, "No claims for user!", true));
 
-            claims.Add(new Claim("BusinessId", Guid.NewGuid().ToString()));
-            claims.Add(new Claim("UserAccountId", Guid.NewGuid().ToString()));
-            claims.Add(new Claim("Email", "a@b.com"));
+            //var claims = new List<Claim>();
+
+            //claims.Add(new Claim("BusinessId", Guid.NewGuid().ToString()));
+            //claims.Add(new Claim("UserAccountId", Guid.NewGuid().ToString()));
+            //claims.Add(new Claim("Email", "a@b.com"));
 
             var claimValue = GetClaimValueFromClaims(claims);
 

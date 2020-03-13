@@ -24,16 +24,12 @@ namespace Kernel.CrossCuttingConcerns
 
             string[] parts = value.Split('/');
             foreach (string part in parts)
-            {
                 if (Guid.TryParse(part, out _))
-                {
                     value = value.Replace(part, "GUID");
-                }
                 else if (IsValidEmailAddress(part))
-                {
                     value = value.Replace(part, "EMAIL");
-                }
-            }
+                else
+                    value = GetHashedString(value);
 
             return value;
         }
