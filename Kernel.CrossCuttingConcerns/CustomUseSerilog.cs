@@ -43,7 +43,7 @@ namespace Kernel.CrossCuttingConcerns
                     .Destructure.UsingAttributes()
                     .ReadFrom.Configuration(configuration)
                     .Enrich.FromLogContext()
-                    .Enrich.WithClaimsValueEnricher(provider, "BusinessId", redactSensitiveInformation)
+                    .Enrich.WithClaimsValueEnricher(provider, "BusinessAccountId", redactSensitiveInformation)
                     .Enrich.WithClaimsValueEnricher(provider, "UserAccountId", redactSensitiveInformation)
                     .Enrich.WithClaimsValueEnricher(provider, "Email", redactSensitiveInformation);
 
