@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Serilog.Context;
 
 namespace ILoggerSandpit.Controllers
 {
@@ -23,7 +24,11 @@ namespace ILoggerSandpit.Controllers
             //int e = 0;
             //var sum = 1 / e;
 
-            _logger.BeginScope("Downloading P45 documents");
+            //using (_logger.BeginScope(new Dictionary<string, object> { { "MyKey", "MyValue" } }))
+
+            _logger.BeginScope(new Dictionary<string, object> {{"triggerAlert", "true"}});
+
+                _logger.BeginScope("Downloading P45 documents");
 
             var itemCount = 9;
             for (var itemNumber = 0; itemNumber < itemCount; ++itemNumber)
@@ -41,7 +46,7 @@ namespace ILoggerSandpit.Controllers
 
             _logger.LogInformation("No contextual properties");
 
-            //using (LogContext.PushProperty("A", 1))
+            using (LogContext.PushProperty("A", 1))
             //{
             //    _logger.LogInformation("Carries property A = 1");
 

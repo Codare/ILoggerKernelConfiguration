@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.DataContracts;
 using Serilog.Events;
@@ -24,6 +25,31 @@ namespace Kernel.CrossCuttingConcerns
             {
                 telemetry.Context.Cloud.RoleInstance = _roleInstance;
                 telemetry.Context.Cloud.RoleName = _roleName;
+
+                if (logEvent.Properties.ContainsKey("UserId"))
+                {
+                    telemetry.Context.User.Id = logEvent.Properties["UserId"].ToString();
+                }
+                
+                if (logEvent.Properties.ContainsKey("operation_Id"))
+                {
+                    telemetry.Context.Operation.Id = logEvent.Properties["operation_Id"].ToString();
+                }
+                
+                if (logEvent.Properties.ContainsKey("operation_parentId"))
+                {
+                    telemetry.Context.Operation.ParentId = logEvent.Properties["operation_parentId"].ToString();
+                }
+
+                ISupportProperties propTelematry = (ISupportProperties)telemetry;
+
+                var removeProps = new[] { "UserId", "operation_parentId", "operation_Id" };
+                removeProps = removeProps.Where(prop => propTelematry.Properties.ContainsKey(prop)).ToArray();
+
+                foreach (var prop in removeProps)
+                {
+                    propTelematry.Properties.Remove(prop);
+                }
 
                 yield return telemetry;
             }
