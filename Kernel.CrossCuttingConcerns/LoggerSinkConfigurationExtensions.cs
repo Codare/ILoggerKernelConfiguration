@@ -15,7 +15,7 @@ namespace Kernel.CrossCuttingConcerns
         private static string _roleName;
         private static string _roleInstance;
 
-        public static LoggerConfiguration DaftPunk(this LoggerSinkConfiguration sinkConfiguration, string roleName, string roleInstance, LogEventLevel restrictedToMinimumLevel)
+        public static LoggerConfiguration ApplicationInsightsExtension(this LoggerSinkConfiguration sinkConfiguration, string roleName, string roleInstance, LogEventLevel restrictedToMinimumLevel)
         {
             _roleName = roleName;
             _roleInstance = roleInstance;

@@ -28,7 +28,7 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             string formattedLogValues = new FormattedLogValues(message, args).ToString();
 
             messageState.Add("Message", formattedLogValues);
-            messageState.Add("TriggerAlert", triggerAlert ? bool.TrueString : bool.FalseString);
+            messageState.Add("TriggerAlert", triggerAlert ? bool.TrueString.ToLower() : bool.FalseString.ToLower());
 
             return messageState;
         }
