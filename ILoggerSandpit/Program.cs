@@ -1,9 +1,9 @@
-﻿using Kernel.CrossCuttingConcerns;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
+using Kernel.CrossCuttingConcerns.Mitrefinch.Serilog.Bootstrap;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 

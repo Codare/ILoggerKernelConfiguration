@@ -9,6 +9,16 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
     {
         /// <summary>Writes an information log message.</summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
+        /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
+        /// <param name="args">An object array that contains zero or more objects to format.</param>
+        /// <example>logger.LogInformation(0, exception, "Error while processing request", true|false)</example>
+        public static void LogInformation(this ILogger logger, string message, params object[] args)
+        {
+            LogInformationImpl(logger, message, false, null, args);
+        }
+
+        /// <summary>Writes an information log message.</summary>
+        /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
         /// <example>logger.LogInformation(0, exception, "Error while processing request", true|false)</example>

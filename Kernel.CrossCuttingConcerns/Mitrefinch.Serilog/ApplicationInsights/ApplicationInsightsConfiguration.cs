@@ -8,9 +8,9 @@ using Serilog.Configuration;
 using Serilog.Events;
 using Serilog.ExtensionMethods;
 
-namespace Kernel.CrossCuttingConcerns
+namespace Kernel.CrossCuttingConcerns.Mitrefinch.Serilog.ApplicationInsights
 {
-    public static class LoggerSinkConfigurationExtensions
+    public static class ApplicationInsightsConfiguration
     {
         private static string _roleName;
         private static string _roleInstance;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.Extensibility;
 
-namespace Kernel.CrossCuttingConcerns
+namespace Kernel.CrossCuttingConcerns.Mitrefinch.Serilog.ApplicationInsights
 {
     class CloudRoleNameTelemetryInitializer : ITelemetryInitializer
     {

@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Configuration;
 
-namespace Kernel.CrossCuttingConcerns.ClaimsValueEnrichment
+namespace Kernel.CrossCuttingConcerns.Mitrefinch.Serilog.ClaimsValueEnrichment
 {
     public static class LoggerEnrichmentConfigurationExtensions
     {

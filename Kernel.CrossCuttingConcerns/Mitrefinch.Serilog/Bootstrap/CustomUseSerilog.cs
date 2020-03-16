@@ -1,6 +1,7 @@
 ﻿using System;
 using Destructurama;
-using Kernel.CrossCuttingConcerns.ClaimsValueEnrichment;
+using Kernel.CrossCuttingConcerns.Mitrefinch.Serilog.ApplicationInsights;
+using Kernel.CrossCuttingConcerns.Mitrefinch.Serilog.ClaimsValueEnrichment;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,8 +12,9 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.AspNetCore;
 using Serilog.Core;
+using Serilog.Exceptions;
 
-namespace Kernel.CrossCuttingConcerns
+namespace Kernel.CrossCuttingConcerns.Mitrefinch.Serilog.Bootstrap
 {
     public static class CustomUseSerilog
     {
@@ -36,13 +38,15 @@ namespace Kernel.CrossCuttingConcerns
                 var provider = collection.BuildServiceProvider();
                 var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
 
-                var redactSensitiveInformation =
-                    GetBooleanFromConfigFile(configuration["Logging:RedactSensitiveInformation"]);
+                bool result = bool.TryParse(configuration["Logging:RedactSensitiveInformation"], out var redactSensitiveInformation);
+                if (!result)
+                    redactSensitiveInformation = true;
 
                 LoggerConfiguration loggerConfiguration = new LoggerConfiguration()
-                    .Destructure.UsingAttributes()
                     .ReadFrom.Configuration(configuration)
                     .Enrich.FromLogContext()
+                    .Enrich.WithExceptionDetails()
+                    .Destructure.UsingAttributes()
                     .Enrich.WithClaimsValueEnricher(provider, "BusinessAccountId", redactSensitiveInformation)
                     .Enrich.WithClaimsValueEnricher(provider, "UserAccountId", redactSensitiveInformation)
                     .Enrich.WithClaimsValueEnricher(provider, "Email", redactSensitiveInformation);
@@ -51,14 +55,6 @@ namespace Kernel.CrossCuttingConcerns
                 collection.AddSingleton(services => (ILoggerFactory)new SerilogLoggerFactory(logger, true));
             });
             return webHostBuilder;
-        }
-
-        private static bool GetBooleanFromConfigFile(string configSetting)
-        {
-            var success = bool.TryParse(configSetting, out var result);
-
-            if (!success) return true;
-            return result;
         }
     }
 }

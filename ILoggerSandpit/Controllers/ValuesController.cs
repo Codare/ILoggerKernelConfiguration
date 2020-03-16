@@ -4,8 +4,6 @@ using Destructurama.Attributed;
 using Kernel.CrossCuttingConcerns.ILoggerExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Serilog;
-using ILogger = Serilog.ILogger;
 
 namespace ILoggerSandpit.Controllers
 {
@@ -19,10 +17,6 @@ namespace ILoggerSandpit.Controllers
 
         public ValuesController(ILogger<ValuesController> logger)
         {
-            //Log.Logger.Error("12", );
-            //ILogger logger2 = Log.Logger;
-            //logger2.
-
             _logger = logger;
         }
 
@@ -30,63 +24,61 @@ namespace ILoggerSandpit.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            //or using?
-            //_logger.BeginScope("Downloading P45 documents");
+            int zero = 0;
 
-            //dynamic war = new ExpandoObject();
-            //war.message = "Red alert please trigger an alert";
-            //war.moreCustomDimensions = 1;
-            //war.triggerAlert = true;
+            try
+            {
+                var result = 5 / zero;
+            }
+            catch (Exception e)
+            {
+                _logger.LogInformation(e, "some message");
+            }
 
-            //extension to take bool => triggerAlert and make the expando behind the scenes.
-            //Also extension to allow an expando to be taken in aka a dynamic object
+            //var position = new { Latitude = 25, Longitude = 134 };
+            //var elapsedMs = 34;
+            //var topSecret = "Top SECRET";
 
-            //_logger.Log(LogLevel.Warning, new EventId(1, "Big Ben"), war, null, null);
+            //_logger.LogCritical("Normal message Processed.", triggerAlert: true);
 
-            var position = new { Latitude = 25, Longitude = 134 };
-            var elapsedMs = 34;
-            var topSecret = "Top SECRET";
+            //_logger.LogCritical("Processed {@Position} in the middle of a {TopSecret} mission {Elapsed:000} ms.", triggerAlert: true, position, topSecret, elapsedMs);
 
-            _logger.LogCritical("Normal message Processed.", triggerAlert: true);
+            //_logger.LogCritical("Processed {1} in the middle of a {2} mission {3} ms.", triggerAlert: true, position, "topSecret------", elapsedMs);
 
-            _logger.LogCritical("Processed {@Position} in the middle of a {TopSecret} mission {Elapsed:000} ms.", triggerAlert: true, position, topSecret, elapsedMs);
+            //_logger.LogCritical("Processed {@Position} in {Elapsed:000} ms.", triggerAlert: true, position, elapsedMs);
 
-            _logger.LogCritical("Processed {1} in the middle of a {2} mission {3} ms.", triggerAlert: true, position, "topSecret------", elapsedMs);
+            //_logger.LogCritical(new Exception("THe one to watch"), "No params trigger alert no exception.", true);
 
-            _logger.LogCritical("Processed {@Position} in {Elapsed:000} ms.", triggerAlert: true, position, elapsedMs);
+            //_logger.LogCritical(new Exception("THe one to watch"), "The one to watch Processed {@Position} in {Elapsed:000} ms.", true, position, elapsedMs);
 
-            _logger.LogCritical(new Exception("THe one to watch"), "No params trigger alert no exception.", true);
+            ////Standard usage
+            ////_logger.LogCritical(new EventId(1), new Exception("123 Exception"), "my formatted Message: {User}", new { User = "Adrian" });
+            ////_logger.LogCritical(new Exception("123 exception"), "my mess");
+            //_logger.LogCritical(new Exception("123 exception"), "my formatted Message: {User}", new { User = "Adrian" });
 
-            _logger.LogCritical(new Exception("THe one to watch"), "The one to watch Processed {@Position} in {Elapsed:000} ms.", true, position, elapsedMs);
+            ////var avoidLegalAction = GetExampleClassWhichNeedsToBeSanitizedBeforeItCanBeLogged();
+            //var smle = new sml { CustomMasked = "123456789" };
 
-            //Standard usage
-            //_logger.LogCritical(new EventId(1), new Exception("123 Exception"), "my formatted Message: {User}", new { User = "Adrian" });
-            //_logger.LogCritical(new Exception("123 exception"), "my mess");
-            _logger.LogCritical(new Exception("123 exception"), "my formatted Message: {User}", new { User = "Adrian" });
+            //var cont = new Cont();
+            //cont.Sml = smle;
 
-            //var avoidLegalAction = GetExampleClassWhichNeedsToBeSanitizedBeforeItCanBeLogged();
-            var smle = new sml { CustomMasked = "123456789" };
+            ////string strDemo = "{DefaultMasked}, {ShowFirstAndLastThreeAndCustomMaskInTheMiddle}, {ShowFirstAndLastThreeAndCustomMaskInTheMiddle1}, {ShowFirstAndLastThreeAndDefaultMaskeInTheMiddle}, {ShowFirstThreeThenCustomMask}, {ShowFirstThreeThenCustomMaskPreserveLength}, {ShowFirstThreeThenDefaultMasked}, {ShowFirstThreeThenDefaultMaskedPreserveLength}, {ShowLastThreeThenCustomMask}, {ShowLastThreeThenCustomMaskPreserveLength}, {ShowLastThreeThenDefaultMasked}, {ShowLastThreeThenDefaultMaskedPreserveLength}, {creditCardInformation}";
 
-            var cont = new Cont();
-            cont.Sml = smle;
+            //string strDemo = "CustomMasked: {@Container}";
+            //////Mitrefinch ILogger Extensions.
+            ////_logger.LogCritical("mess", true);
+            ////_logger.LogCritical(new Exception("123"), "my formatted Message: { User}", true);
+            ////_logger.LogCritical(new Exception("456"), "my formatted Message: {User}", true, new { User = "Adrian" });
+            ////_logger.LogCritical(exception: new Exception("The real one to watch"), message: strDemo, args: removeSensitiveInformationFromClassUsingAttributes);
 
-            //string strDemo = "{DefaultMasked}, {ShowFirstAndLastThreeAndCustomMaskInTheMiddle}, {ShowFirstAndLastThreeAndCustomMaskInTheMiddle1}, {ShowFirstAndLastThreeAndDefaultMaskeInTheMiddle}, {ShowFirstThreeThenCustomMask}, {ShowFirstThreeThenCustomMaskPreserveLength}, {ShowFirstThreeThenDefaultMasked}, {ShowFirstThreeThenDefaultMaskedPreserveLength}, {ShowLastThreeThenCustomMask}, {ShowLastThreeThenCustomMaskPreserveLength}, {ShowLastThreeThenDefaultMasked}, {ShowLastThreeThenDefaultMaskedPreserveLength}, {creditCardInformation}";
+            //_logger.LogCritical(exception: new Exception("The real one to watch plain format message "), message: "Hi redact: {@Container}", args: cont);
+            //_logger.LogCritical(exception: new Exception("The real one to watch"), message: "1234 get wiv the wicked Here is {@Sml}", args: smle);
 
-            string strDemo = "CustomMasked: {@Container}";
-            ////Mitrefinch ILogger Extensions.
-            //_logger.LogCritical("mess", true);
-            //_logger.LogCritical(new Exception("123"), "my formatted Message: { User}", true);
-            //_logger.LogCritical(new Exception("456"), "my formatted Message: {User}", true, new { User = "Adrian" });
-            //_logger.LogCritical(exception: new Exception("The real one to watch"), message: strDemo, args: removeSensitiveInformationFromClassUsingAttributes);
+            //_logger.LogCritical(exception: new Exception("The real one to watch plain format message "), triggerAlert: false, message: "Hi redact: {@Container}", args: cont);
+            //_logger.LogCritical(exception: new Exception("The real one to watch"), message: "1234 get wiv the wicked Here is {@Sml}", triggerAlert: false, args: smle);
 
-            _logger.LogCritical(exception: new Exception("The real one to watch plain format message "), message: "Hi redact: {@Container}", args: cont);
-            _logger.LogCritical(exception: new Exception("The real one to watch"), message: "1234 get wiv the wicked Here is {@Sml}", args: smle);
-
-            _logger.LogCritical(exception: new Exception("The real one to watch plain format message "), triggerAlert: false, message: "Hi redact: {@Container}", args: cont);
-            _logger.LogCritical(exception: new Exception("The real one to watch"), message: "1234 get wiv the wicked Here is {@Sml}", triggerAlert: false, args: smle);
-
-            _logger.LogCritical(exception: new Exception("The real one to watch plain format message "), triggerAlert: true, message: "Hi redact: {@Container}", args: cont);
-            _logger.LogCritical(exception: new Exception("The real one to watch"), message: "1234 get wiv the wicked Here is {@Sml}", triggerAlert: true, args: smle);
+            //_logger.LogCritical(exception: new Exception("The real one to watch plain format message "), triggerAlert: true, message: "Hi redact: {@Container}", args: cont);
+            //_logger.LogCritical(exception: new Exception("The real one to watch"), message: "1234 get wiv the wicked Here is {@Sml}", triggerAlert: true, args: smle);
 
 
             //_logger.LogCritical(exception: new Exception("The real one to watch"), message: strDemo, triggerAlert: true, args: removeSensitiveInformationFromClassUsingAttributes);
@@ -94,6 +86,33 @@ namespace ILoggerSandpit.Controllers
             //_logger.LogCritical(exception: new Exception("The real one to watch"), message: "1234 get wiv the wicked Here is {@Container}", triggerAlert: true, args: container);
 
             return new string[] { "value1", "value2" };
+        }
+
+        public class ExceptionMetadata
+        {
+            [LogMasked(ShowFirst = 3)]
+            public string Id { get; set; }
+
+            [NotLogged]
+            public string Name { get; set; }
+
+            public ExceptionMetadata(string id, string name)
+            {
+                Id = id;
+                Name = name;
+            }
+        }
+
+        public class BusinessSpecificException : Exception
+        {
+            private string _otherExceptionProps;
+            private ExceptionMetadata _exceptionMetadata;
+
+            public BusinessSpecificException(string msg, string otherExceptionProps, ExceptionMetadata exceptionMetadata) : base(msg)
+            {
+                _otherExceptionProps = otherExceptionProps;
+                _exceptionMetadata = exceptionMetadata;
+            }
         }
 
         private sml GetExampleClassWhichNeedsToBeSanitizedBeforeItCanBeLogged()

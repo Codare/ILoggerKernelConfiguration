@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace Kernel.CrossCuttingConcerns.ClaimsValueEnrichment
+namespace Kernel.CrossCuttingConcerns.Mitrefinch.Serilog.ClaimsValueEnrichment
 {
     public class ClaimsValueEnricher : ILogEventEnricher
     {
@@ -44,16 +44,10 @@ namespace Kernel.CrossCuttingConcerns.ClaimsValueEnrichment
                 return;
             }
 
-            var claims = ((ClaimsIdentity)user.Identity).Claims;
+            var claims = ((ClaimsIdentity)user.Identity).Claims.ToList();
 
             if(!claims.Any())
                 logEvent.AddOrUpdateProperty(propertyFactory.CreateProperty(_claimProperty, "No claims for user!", true));
-
-            //var claims = new List<Claim>();
-
-            //claims.Add(new Claim("BusinessId", Guid.NewGuid().ToString()));
-            //claims.Add(new Claim("UserAccountId", Guid.NewGuid().ToString()));
-            //claims.Add(new Claim("Email", "a@b.com"));
 
             var claimValue = GetClaimValueFromClaims(claims);
 
