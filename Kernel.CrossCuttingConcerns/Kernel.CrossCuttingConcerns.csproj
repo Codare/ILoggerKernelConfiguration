@@ -7,7 +7,7 @@
     <Description>Kernel cross cutting concerns temporary nuget package to enable testing</Description>
     <PackageId>Kernel.CrossCuttingConcerns</PackageId>
     <PackageReleaseNotes>Kernel cross cutting concerns temporary nuget package to enable testing</PackageReleaseNotes>
-    <Version>1.0.0.25</Version>
+    <Version>1.0.0.26</Version>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <Company>Kernel.CrossCuttingConcerns</Company>
     <Authors>Kernel.CrossCuttingConcerns</Authors>

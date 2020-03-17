@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Destructurama.Attributed;
-using Kernel.CrossCuttingConcerns.ILoggerExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace ILoggerSandpit.Controllers
 {
+    //using Kernel.CrossCuttingConcerns.ILoggerExtensions;
+
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -24,22 +25,37 @@ namespace ILoggerSandpit.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            int zero = 0;
+            //int zero = 0;
 
-            try
+            //try
+            //{
+            //    var result = 5 / zero;
+            //}
+            //catch (Exception e)
+            //{
+            //    _logger.LogInformation(e, "some message");
+            //}
+
+            _logger.LogInformation("123", 1);
+            _logger.LogInformation(new Exception("123"), "message", 1);
+
+
+            var position = new
             {
-                var result = 5 / zero;
-            }
-            catch (Exception e)
-            {
-                _logger.LogInformation(e, "some message");
-            }
+                Latitude = 25,
+                Longitude = 134
+            };
 
-            //var position = new { Latitude = 25, Longitude = 134 };
-            //var elapsedMs = 34;
-            //var topSecret = "Top SECRET";
+            var elapsedMs = 34;
+            var topSecret = "Top SECRET";
 
-            //_logger.LogCritical("Normal message Processed.", triggerAlert: true);
+            _logger.LogCritical("Normal message Processed {topSecret}.", topSecret);
+
+            _logger.LogCritical(new Exception("Testing normal extension"), "Processed {@Position} in the middle of a wehich is this {topSecret} mission {Elapsed:000} ms.", position, topSecret, elapsedMs);
+
+            _logger.LogCritical(new Exception("Testing normal extension"), "Processed {@Position} in the middle of a all scrubbed now {topSecret} mission {Elapsed:000} ms.", position, topSecret, elapsedMs);
+
+            _logger.LogCritical(new Exception("Testng"), "Processed {@Position} in the middle of a {topSecret} mission {Elapsed:000} ms.", triggerAlert: true, position, topSecret, elapsedMs);
 
             //_logger.LogCritical("Processed {@Position} in the middle of a {TopSecret} mission {Elapsed:000} ms.", triggerAlert: true, position, topSecret, elapsedMs);
 
