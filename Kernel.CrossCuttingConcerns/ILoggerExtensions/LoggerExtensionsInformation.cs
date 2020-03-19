@@ -7,7 +7,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
 {
     public static class LoggerExtensionsInformation
     {
-        /// <summary>Writes an information log message.</summary>
+        /// <summary>
+        /// Writes an information log message.
+        ///Logs that track the general flow of the application. These logs should have long-term value.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>
@@ -16,8 +19,11 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
         {
             LogInformationImpl(logger, message, false, null, args);
         }
-        
-        /// <summary>Writes an information log message.</summary>
+
+        /// <summary>
+        /// Writes an information log message.
+        ///Logs that track the general flow of the application. These logs should have long-term value.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -27,7 +33,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogInformationImpl(logger, message, triggerAlert);
         }
 
-        /// <summary>Writes a information log message.</summary>
+        /// <summary>
+        /// Writes an information log message.
+        ///Logs that track the general flow of the application. These logs should have long-term value.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -39,7 +48,8 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
         }
 
         /// <summary>
-        /// Formats and writes an information log message.
+        /// Writes an information log message.
+        ///Logs that track the general flow of the application. These logs should have long-term value.
         /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -51,7 +61,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogInformationImpl(logger, message, triggerAlert, null, args);
         }
 
-        /// <summary>Writes an information log message.</summary>
+        /// <summary>
+        /// Writes an information log message.
+        ///Logs that track the general flow of the application. These logs should have long-term value.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -62,7 +75,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogInformationImpl(logger, message, triggerAlert, exception);
         }
 
-        /// <summary>Formats and writes an information log message.</summary>
+        /// <summary>
+        /// Writes an information log message.
+        ///Logs that track the general flow of the application. These logs should have long-term value.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="exception">The exception to log.</param>
@@ -74,7 +90,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogInformationImpl(logger, message, triggerAlert, exception, args);
         }
 
-        /// <summary>Formats and writes an information log message.</summary>
+        /// <summary>
+        /// Writes an information log message.
+        ///Logs that track the general flow of the application. These logs should have long-term value.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="exception">The exception to log.</param>
@@ -95,7 +114,5 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
 
             logger.Log(logLevel: LogLevel.Information, eventId: new EventId(9999), state: eoDynamic, exception: exception, formatter: null);
         }
-
-
     }
 }

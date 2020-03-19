@@ -7,7 +7,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
 {
     public static class LoggerExtensionsCritical
     {
-        /// <summary>Writes a critical log message.</summary>
+        /// <summary>
+        /// Writes a critical log message.
+        /// Logs that describe an unrecoverable application or system crash, or a catastrophic failure that requires immediate attention.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -17,7 +20,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogCriticalImpl(logger, message, triggerAlert);
         }
 
-        /// <summary>Writes a critical log message.</summary>
+        /// <summary>
+        /// Writes a critical log message.
+        /// Logs that describe an unrecoverable application or system crash, or a catastrophic failure that requires immediate attention.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>
@@ -29,6 +35,7 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
 
         /// <summary>
         /// Formats and writes a critical log message.
+        /// Logs that describe an unrecoverable application or system crash, or a catastrophic failure that requires immediate attention.
         /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -40,7 +47,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogCriticalImpl(logger, message, triggerAlert, null, args);
         }
 
-        /// <summary>Writes a critical log message.</summary>
+        /// <summary>
+        /// Writes a critical log message.
+        /// Logs that describe an unrecoverable application or system crash, or a catastrophic failure that requires immediate attention.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -51,7 +61,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogCriticalImpl(logger, message, false, exception, args);
         }
 
-        /// <summary>Writes a critical log message.</summary>
+        /// <summary>
+        /// Writes a critical log message.
+        /// Logs that describe an unrecoverable application or system crash, or a catastrophic failure that requires immediate attention.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -62,7 +75,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogCriticalImpl(logger, message, triggerAlert, exception);
         }
 
-        /// <summary>Formats and writes a critical log message.</summary>
+        /// <summary>
+        /// Writes a critical log message.
+        /// Logs that describe an unrecoverable application or system crash, or a catastrophic failure that requires immediate attention.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="exception">The exception to log.</param>
@@ -74,7 +90,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogCriticalImpl(logger, message, triggerAlert, exception, args);
         }
 
-        /// <summary>Formats and writes a critical log message.</summary>
+        /// <summary>
+        /// Writes a critical log message.
+        /// Logs that describe an unrecoverable application or system crash, or a catastrophic failure that requires immediate attention.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="exception">The exception to log.</param>

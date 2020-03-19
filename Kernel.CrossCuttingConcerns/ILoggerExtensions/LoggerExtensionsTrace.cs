@@ -7,7 +7,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
 {
     public static class LoggerExtensionsTrace
     {
-        /// <summary>Writes a trace log message.</summary>
+        /// <summary>
+        /// Writes a trace log message.
+        ///Logs that contain the most detailed messages. These messages may contain sensitive application data. These messages are disabled by default and should never be enabled in a production environment.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -18,7 +21,8 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
         }
 
         /// <summary>
-        /// Formats and writes a trace log message.
+        /// Writes a trace log message.
+        ///Logs that contain the most detailed messages. These messages may contain sensitive application data. These messages are disabled by default and should never be enabled in a production environment.
         /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -30,7 +34,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogTraceImpl(logger, message, triggerAlert, null, args);
         }
 
-        /// <summary>Writes a trace log message.</summary>
+        /// <summary>
+        /// Writes a trace log message.
+        ///Logs that contain the most detailed messages. These messages may contain sensitive application data. These messages are disabled by default and should never be enabled in a production environment.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -41,7 +48,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogTraceImpl(logger, message, false, exception, args);
         }
 
-        /// <summary>Writes an trace log message.</summary>
+        /// <summary>
+        /// Writes a trace log message.
+        ///Logs that contain the most detailed messages. These messages may contain sensitive application data. These messages are disabled by default and should never be enabled in a production environment.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -52,7 +62,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogTraceImpl(logger, message, triggerAlert, exception);
         }
 
-        /// <summary>Formats and writes a trace log message.</summary>
+        /// <summary>
+        /// Writes a trace log message.
+        ///Logs that contain the most detailed messages. These messages may contain sensitive application data. These messages are disabled by default and should never be enabled in a production environment.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="exception">The exception to log.</param>
@@ -64,7 +77,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogTraceImpl(logger, message, triggerAlert, exception, args);
         }
 
-        /// <summary>Formats and writes a trace log message.</summary>
+        /// <summary>
+        /// Writes a trace log message.
+        ///Logs that contain the most detailed messages. These messages may contain sensitive application data. These messages are disabled by default and should never be enabled in a production environment.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="exception">The exception to log.</param>
@@ -85,7 +101,5 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
 
             logger.Log(logLevel: LogLevel.Trace, eventId: new EventId(9999), state: eoDynamic, exception: exception, formatter: null);
         }
-
-        
     }
 }

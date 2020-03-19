@@ -7,7 +7,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
 {
     public static class LoggerExtensionsWarning
     {
-        /// <summary>Writes a warning log message.</summary>
+        /// <summary>
+        /// Writes a warning log message.
+        ///Logs that highlight an abnormal or unexpected event in the application flow, but do not otherwise cause the application execution to stop.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -18,7 +21,8 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
         }
 
         /// <summary>
-        /// Formats and writes a warning log message.
+        /// Writes a warning log message.
+        ///Logs that highlight an abnormal or unexpected event in the application flow, but do not otherwise cause the application execution to stop.
         /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -30,7 +34,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogWarningImpl(logger, message, triggerAlert, null, args);
         }
 
-        /// <summary>Writes a warning log message.</summary>
+        /// <summary>
+        /// Writes a warning log message.
+        ///Logs that highlight an abnormal or unexpected event in the application flow, but do not otherwise cause the application execution to stop.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -41,7 +48,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogWarningImpl(logger, message, false, exception, args);
         }
 
-        /// <summary>Writes an warning log message.</summary>
+        /// <summary>
+        /// Writes a warning log message.
+        ///Logs that highlight an abnormal or unexpected event in the application flow, but do not otherwise cause the application execution to stop.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -52,7 +62,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogWarningImpl(logger, message, triggerAlert, exception);
         }
 
-        /// <summary>Formats and writes a warning log message.</summary>
+        /// <summary>
+        /// Writes a warning log message.
+        ///Logs that highlight an abnormal or unexpected event in the application flow, but do not otherwise cause the application execution to stop.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="exception">The exception to log.</param>
@@ -64,7 +77,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogWarningImpl(logger, message, triggerAlert, exception, args);
         }
 
-        /// <summary>Formats and writes a warning log message.</summary>
+        /// <summary>
+        /// Writes a warning log message.
+        ///Logs that highlight an abnormal or unexpected event in the application flow, but do not otherwise cause the application execution to stop.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="exception">The exception to log.</param>
@@ -85,7 +101,5 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
 
             logger.Log(logLevel: LogLevel.Warning, eventId: new EventId(9999), state: eoDynamic, exception: exception, formatter: null);
         }
-
-
     }
 }

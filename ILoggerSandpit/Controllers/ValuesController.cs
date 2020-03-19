@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ILoggerSandpit.Controllers
 {
-    //using Kernel.CrossCuttingConcerns.ILoggerExtensions;
+    using Kernel.CrossCuttingConcerns.ILoggerExtensions;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -49,7 +49,9 @@ namespace ILoggerSandpit.Controllers
             var elapsedMs = 34;
             var topSecret = "Top SECRET";
 
-            _logger.LogCritical("Normal message Processed {topSecret}.", topSecret);
+            _logger.LogDebug(new Exception(), "", true, 1);
+
+            _logger.LogCritical("Normal message Processed {topSecret}.", topSecret, true);
 
             _logger.LogCritical(new Exception("Testing normal extension"), "Processed {@Position} in the middle of a wehich is this {topSecret} mission {Elapsed:000} ms.", position, topSecret, elapsedMs);
 

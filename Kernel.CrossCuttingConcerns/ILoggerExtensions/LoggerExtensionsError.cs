@@ -7,7 +7,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
 {
     public static class LoggerExtensionsError
     {
-        /// <summary>Writes an error log message.</summary>
+        /// <summary>
+        /// Writes an error log message.
+        /// Logs that highlight when the current flow of execution is stopped due to a failure. These should indicate a failure in the current activity, not an application-wide failure.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -19,6 +22,7 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
 
         /// <summary>
         /// Writes an error log message.
+        /// Logs that highlight when the current flow of execution is stopped due to a failure. These should indicate a failure in the current activity, not an application-wide failure.
         /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -30,7 +34,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogErrorImpl(logger, message, triggerAlert, null, args);
         }
 
-        /// <summary>Writes an error log message.</summary>
+        /// <summary>
+        /// Writes an error log message.
+        /// Logs that highlight when the current flow of execution is stopped due to a failure. These should indicate a failure in the current activity, not an application-wide failure.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -41,7 +48,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogErrorImpl(logger, message, false, exception, args);
         }
 
-        /// <summary>Writes an error log message.</summary>
+        /// <summary>
+        /// Writes an error log message.
+        /// Logs that highlight when the current flow of execution is stopped due to a failure. These should indicate a failure in the current activity, not an application-wide failure.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: <code>"User logged in from"</code></param>
@@ -52,7 +62,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogErrorImpl(logger, message, triggerAlert, exception);
         }
 
-        /// <summary>Writes an error log message.</summary>
+        /// <summary>
+        /// Writes an error log message.
+        /// Logs that highlight when the current flow of execution is stopped due to a failure. These should indicate a failure in the current activity, not an application-wide failure.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="exception">The exception to log.</param>
@@ -64,7 +77,10 @@ namespace Kernel.CrossCuttingConcerns.ILoggerExtensions
             LogErrorImpl(logger, message, triggerAlert, exception, args);
         }
 
-        /// <summary>Formats and writes an error log message.</summary>
+        /// <summary>
+        /// Writes an error log message.
+        /// Logs that highlight when the current flow of execution is stopped due to a failure. These should indicate a failure in the current activity, not an application-wide failure.
+        /// </summary>
         /// <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger" /> to write to.</param>
         /// <param name="triggerAlert">Boolean parameter to indicate that an alert is to be triggered.</param>
         /// <param name="exception">The exception to log.</param>
