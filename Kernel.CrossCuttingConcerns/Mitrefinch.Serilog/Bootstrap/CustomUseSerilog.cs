@@ -47,9 +47,9 @@ namespace Kernel.CrossCuttingConcerns.Mitrefinch.Serilog.Bootstrap
                     .Enrich.FromLogContext()
                     .Enrich.WithExceptionDetails()
                     .Destructure.UsingAttributes()
-                    .Enrich.WithClaimsValueEnricher(provider, "BusinessAccountId", redactSensitiveInformation)
-                    .Enrich.WithClaimsValueEnricher(provider, "UserAccountId", redactSensitiveInformation)
-                    .Enrich.WithClaimsValueEnricher(provider, "Email", redactSensitiveInformation);
+                    .Enrich.WithClaimsValueEnricher(provider, "businessAccountId", redactSensitiveInformation)
+                    .Enrich.WithClaimsValueEnricher(provider, "userAccountId", redactSensitiveInformation)
+                    .Enrich.WithClaimsValueEnricher(provider, "email", redactSensitiveInformation);
 
                 Logger logger = loggerConfiguration.CreateLogger();
                 collection.AddSingleton(services => (ILoggerFactory)new SerilogLoggerFactory(logger, true));

@@ -38,13 +38,19 @@ namespace Kernel.CrossCuttingConcerns.Mitrefinch.Serilog.ClaimsValueEnrichment
 
             var user = _httpContextAccessor.HttpContext.User;
 
-            if (user == null || !user.Identity.IsAuthenticated)
+            if (user == null)// || !user.Identity.IsAuthenticated)
             {
                 logEvent.AddOrUpdateProperty(propertyFactory.CreateProperty(_claimProperty, "No user or user is not authenticated!", true));
                 return;
             }
 
-            var claims = ((ClaimsIdentity)user.Identity).Claims.ToList();
+            var claims = new List<Claim>();
+
+            claims.Add(new Claim("businessAccountId", Guid.NewGuid().ToString()));
+            claims.Add(new Claim("userAccountId", Guid.NewGuid().ToString()));
+            claims.Add(new Claim("email", "a@b.com"));
+
+            //var claims = ((ClaimsIdentity)user.Identity).Claims.ToList();
 
             if(!claims.Any())
                 logEvent.AddOrUpdateProperty(propertyFactory.CreateProperty(_claimProperty, "No claims for user!", true));

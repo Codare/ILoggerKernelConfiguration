@@ -49,7 +49,7 @@ namespace ILoggerSandpit.Controllers
             var elapsedMs = 34;
             var topSecret = "Top SECRET";
 
-            _logger.LogDebug(new Exception(), "", true, 1);
+            _logger.LogDebug(new Exception(), "");
 
             _logger.LogCritical("Normal message Processed {topSecret}.", topSecret, true);
 
